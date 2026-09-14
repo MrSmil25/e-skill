@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Coins, Copy, Repeat2, Sparkles, UserPlus, Users } from "lucide-react";
-import { referral } from "@/data/exchange";
+import { ArrowRight, BadgeCheck, Copy, Repeat2, Sparkles, TrendingUp, UserPlus, Users } from "lucide-react";
+import { referral, referralMaxReward, referralRewards } from "@/data/exchange";
 import { EmptyState } from "@/components/exchange/empty-state";
 import { StudentBadge } from "@/components/exchange/skill-card";
 
@@ -57,7 +57,7 @@ function ReferralPage() {
             value={String(referral.successfulExchanges)}
             label="Successful exchanges"
           />
-          <Metric icon={<Coins className="size-4" />} value={String(referral.creditsEarned)} label="Credits earned" />
+          <Metric icon={<TrendingUp className="size-4" />} value={String(referral.creditsEarned)} label="Credits earned" />
           <Metric
             icon={<BadgeCheck className="size-4" />}
             value={`${Math.round((referral.successfulExchanges / referral.studentsJoined) * 100)}%`}
@@ -66,26 +66,24 @@ function ReferralPage() {
         </div>
       </section>
 
-      <section className="mt-10" aria-label="How rewards activate">
-        <h2 className="font-display text-xl font-bold">How rewards activate</h2>
+      <section className="mt-10" aria-label="Grow Together">
+        <h2 className="font-display text-xl font-bold">Grow Together</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-7 text-workspace-muted">
+          Kredit referral diberikan bertahap ketika temanmu benar-benar aktif belajar, bukan hanya saat mendaftar.
+          Maksimal {referralMaxReward} Kredit per teman yang kamu ajak.
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <Step
-            step="1"
-            title="Invite someone capable"
-            body="Share your code with a student who can teach or genuinely wants to learn."
-          />
-          <Step
-            step="2"
-            title="They complete an exchange"
-            body="Nothing is credited at sign-up. The exchange has to actually happen and be rated."
-          />
-          <Step
-            step="3"
-            title="You both earn credits"
-            body="You receive 5 Credits, they receive a starter balance for their first learning session."
-          />
+          {referralRewards.map((reward, i) => (
+            <Step
+              key={reward.stage}
+              step={String(i + 1)}
+              title={`${reward.stage} · +${reward.credits} Credits${reward.pending ? " (pending)" : ""}`}
+              body={reward.note}
+            />
+          ))}
         </div>
       </section>
+
 
       <section className="mt-10" aria-label="Students you invited">
         <div className="flex items-baseline justify-between">

@@ -5,7 +5,16 @@
  * prototype behaves like an account that has already been active for a semester.
  */
 
-import { currentStudent, skillById, studentById, teachingHours, type Skill, type Student } from "./exchange";
+import {
+  SESSION_MINUTES,
+  creditPricing,
+  currentStudent,
+  skillById,
+  studentById,
+  teachingHours,
+  type Skill,
+  type Student,
+} from "./exchange";
 
 export type SessionStatus = "upcoming" | "awaiting" | "completed";
 export type SessionRole = "learning" | "teaching";
@@ -26,14 +35,14 @@ export type ExchangeSession = {
   feedback?: string;
 };
 
-export const sessions: ExchangeSession[] = [
+const sessionSeeds: ExchangeSession[] = [
   {
     id: "s1",
     role: "learning",
     status: "upcoming",
     skillId: "public-speaking",
     peerId: "alya-rahmadani",
-    when: "Tomorrow · 19:00–19:45",
+    when: "Tomorrow · 19:00–20:00",
     duration: 45,
     credits: 6,
     mode: "Online · Google Meet",
@@ -49,7 +58,7 @@ export const sessions: ExchangeSession[] = [
     status: "upcoming",
     skillId: "python-basic",
     peerId: "satria-anugrah",
-    when: "Thursday · 16:30–17:15",
+    when: "Thursday · 16:30–17:30",
     duration: 45,
     credits: 5,
     mode: "On campus · Fasilkom Lounge",
@@ -101,7 +110,7 @@ export const sessions: ExchangeSession[] = [
     credits: 7,
     mode: "Online · Google Meet",
     agenda: ["Map a repetitive task", "Build the automation", "Handover and test"],
-    outcome: "+7 Credits earned · 1 student helped",
+    outcome: "Knowledge shared · +18 Credits · 1 student helped",
     rating: 5,
     feedback: "Explained every step slowly and checked I could redo it alone.",
   },
@@ -116,7 +125,7 @@ export const sessions: ExchangeSession[] = [
     credits: 5,
     mode: "On campus · Fasilkom Lounge",
     agenda: ["Variables and loops", "Read a CSV", "Debug calmly"],
-    outcome: "+5 Credits earned · peer rated 4.9",
+    outcome: "Knowledge shared · +12 Credits · peer rated 4.9",
     rating: 5,
     feedback: "First time programming felt possible. Patient and very structured.",
   },
@@ -137,6 +146,20 @@ export const sessions: ExchangeSession[] = [
   },
 ];
 
+/**
+ * One exchange = 60 minutes. Credits follow the skill level:
+ * learning spends the level cost, teaching earns the contribution reward.
+ */
+export const sessions: ExchangeSession[] = sessionSeeds.map((seed) => {
+  const level = skillById[seed.skillId]?.level ?? "Beginner";
+  const pricing = creditPricing[level];
+  return {
+    ...seed,
+    duration: SESSION_MINUTES,
+    credits: seed.role === "learning" ? pricing.learn : pricing.teach,
+  };
+});
+
 export function sessionsByStatus(status: SessionStatus) {
   return sessions.filter((s) => s.status === status);
 }
@@ -156,18 +179,75 @@ export type CreditEntry = {
   direction: "earned" | "spent";
   amount: number;
   reason: string;
+  story: string;
   peer: string;
   when: string;
 };
 
 export const creditLedger: CreditEntry[] = [
-  { id: "c1", direction: "earned", amount: 7, reason: "Taught Automation with AI Tools", peer: "Citra Ayu Lestari", when: "9 September" },
-  { id: "c2", direction: "spent", amount: 4, reason: "Learned Excel Analytics", peer: "Dimas Prasetyo", when: "12 September" },
-  { id: "c3", direction: "earned", amount: 5, reason: "Taught Python Basic", peer: "Yoga Permana", when: "5 September" },
-  { id: "c4", direction: "earned", amount: 10, reason: "Referral reward — 2 invited students completed an exchange", peer: "EXCHANGE", when: "3 September" },
-  { id: "c5", direction: "spent", amount: 6, reason: "Learned Public Speaking", peer: "Alya Rahmadani", when: "28 August" },
-  { id: "c6", direction: "earned", amount: 15, reason: "Taught Website Development to 3 students", peer: "FT UI cohort", when: "22 August" },
-  { id: "c7", direction: "earned", amount: 20, reason: "Welcome grant — verified UI student email", peer: "EXCHANGE", when: "14 July" },
+  {
+    id: "c1",
+    direction: "earned",
+    amount: 18,
+    reason: "Teaching Automation with AI Tools",
+    story: "Knowledge Shared → Skill Reputation Increased",
+    peer: "Citra Ayu Lestari",
+    when: "9 September",
+  },
+  {
+    id: "c2",
+    direction: "spent",
+    amount: 20,
+    reason: "Excel Analytics Session",
+    story: "Skill baru dipelajari → progress naik ke 80%",
+    peer: "Dimas Prasetyo",
+    when: "12 September",
+  },
+  {
+    id: "c3",
+    direction: "earned",
+    amount: 12,
+    reason: "Teaching Python Basic",
+    story: "Knowledge Shared → 1 mahasiswa terbantu",
+    peer: "Yoga Permana",
+    when: "5 September",
+  },
+  {
+    id: "c4",
+    direction: "earned",
+    amount: 20,
+    reason: "Referral Success",
+    story: "Teman kamu menyelesaikan exchange pertamanya",
+    peer: "EXCHANGE",
+    when: "3 September",
+  },
+  {
+    id: "c5",
+    direction: "spent",
+    amount: 15,
+    reason: "Public Speaking Session",
+    story: "Latihan terarah → siap untuk kompetisi",
+    peer: "Alya Rahmadani",
+    when: "28 August",
+  },
+  {
+    id: "c6",
+    direction: "earned",
+    amount: 25,
+    reason: "Teaching Website Development",
+    story: "Knowledge Shared → 3 mahasiswa terbantu",
+    peer: "FT UI cohort",
+    when: "22 August",
+  },
+  {
+    id: "c7",
+    direction: "earned",
+    amount: 30,
+    reason: "30 Starter Credits",
+    story: "Awal perjalanan kamu di EXCHANGE",
+    peer: "EXCHANGE",
+    when: "14 July",
+  },
 ];
 
 export const creditsEarned = creditLedger

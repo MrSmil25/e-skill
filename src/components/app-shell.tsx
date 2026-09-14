@@ -5,7 +5,7 @@ import {
   BookOpen,
   CalendarDays,
   CircleUserRound,
-  Coins,
+  Sparkles,
   Compass,
   Gift,
   LayoutDashboard,
@@ -29,7 +29,7 @@ const navigation = [
   { label: "My Sessions", to: "/sessions", icon: CalendarDays },
   { label: "Teach", to: "/teach", icon: Presentation },
   { label: "Skill Passport", to: "/passport", icon: BadgeCheck },
-  { label: "Wallet", to: "/wallet", icon: Coins },
+  { label: "Contribution", to: "/wallet", icon: Sparkles },
   { label: "Referral", to: "/referral", icon: Gift },
   { label: "Profile", to: "/profile", icon: CircleUserRound },
 ] as const;

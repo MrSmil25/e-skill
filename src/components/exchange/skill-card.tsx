@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, CalendarClock, Clock, Coins, Star, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, CalendarClock, Clock, Star, Users, Zap } from "lucide-react";
 import { matchScore, type Offering } from "@/data/exchange";
 import { cn } from "@/lib/utils";
 
@@ -84,7 +84,7 @@ export function SkillCard({ offering, showMatch = true }: { offering: Offering; 
           <CalendarClock className="size-3.5" /> {offering.availability}
         </span>
         <span className="ml-auto flex items-center gap-1 font-semibold text-workspace-foreground">
-          <Coins className="size-3.5 text-accent" /> {skill.credits} Credits
+          <Zap className="size-3.5 text-accent" /> {skill.credits} Credits
         </span>
       </div>
 

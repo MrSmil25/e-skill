@@ -4,13 +4,13 @@ import {
   BadgeCheck,
   Check,
   Clock,
-  Coins,
+  Zap,
   Plus,
   Sparkles,
   Users,
 } from "lucide-react";
-import { currentStudent, goalLabels, skillById, skills, studentById, teachingHours } from "@/data/exchange";
-import { listings, teachRequests } from "@/data/sessions";
+import { creditPricing, currentStudent, goalLabels, skillById, skills, studentById, teachingHours } from "@/data/exchange";
+import { creditsEarned, listings, teachRequests } from "@/data/sessions";
 import { StudentBadge } from "@/components/exchange/skill-card";
 import { EmptyState } from "@/components/exchange/empty-state";
 
@@ -34,6 +34,7 @@ export const Route = createFileRoute("/_authenticated/_workspace/teach")({
 
 function TeachPage() {
   const me = currentStudent;
+  const teachingCredits = creditsEarned;
   const openToTeach = skills
     .filter((skill) => me.verifiedSkills.includes(skill.id))
     .filter((skill) => !me.teaching.some((t) => t.skillId === skill.id))
@@ -44,10 +45,10 @@ function TeachPage() {
       <header className="flex flex-col gap-6 border-b border-workspace-border pb-9 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">Create value</p>
-          <h1 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Teach what you know</h1>
+          <h1 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Share Knowledge. Earn Credits.</h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-workspace-muted">
-            You do not need to be an expert — you need to be one step ahead. Teaching is how EXCHANGE turns
-            what you know into credits, reputation, and proof you can explain your work.
+            Ajarkan skill yang kamu kuasai dan dapatkan Kredit sebagai bentuk apresiasi atas kontribusi kamu.
+            Kamu tidak perlu menjadi ahli — cukup satu langkah lebih maju dari orang yang kamu bantu.
           </p>
         </div>
         <button className="flex h-10 shrink-0 items-center gap-1.5 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-strong">
@@ -56,11 +57,36 @@ function TeachPage() {
       </header>
 
       <section className="mt-8 grid gap-3 sm:grid-cols-4" aria-label="Teaching summary">
-        <Stat label="Students helped" value={String(me.studentsHelped)} caption="Across 3 faculties" />
-        <Stat label="Teaching hours" value={String(teachingHours(me))} caption="Logged and verified" />
-        <Stat label="Credits earned" value="42" caption="From teaching only" accent />
-        <Stat label="Open requests" value={String(teachRequests.length)} caption="Waiting for your reply" />
+        <Stat label="Students helped" value={String(me.studentsHelped)} caption="Lintas 3 fakultas" />
+        <Stat label="Teaching hours" value={String(teachingHours(me))} caption="Tercatat dan terverifikasi" />
+        <Stat label="Credits earned" value={String(teachingCredits)} caption="Dari kontribusi mengajar" accent />
+        <Stat label="Open requests" value={String(teachRequests.length)} caption="Menunggu balasan kamu" />
       </section>
+
+      <section className="mt-10" aria-labelledby="reward-heading">
+        <h2 id="reward-heading" className="font-display text-lg font-bold">
+          Teaching Rewards
+        </h2>
+        <p className="mt-1 max-w-2xl text-sm leading-7 text-workspace-muted">
+          Satu sesi berdurasi 60 menit. Besar apresiasi mengikuti tingkat kompleksitas skill yang kamu bagikan.
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {(["Beginner", "Intermediate", "Advanced"] as const).map((level) => {
+            const tier = creditPricing[level];
+            return (
+              <article key={level} className="rounded-lg border border-workspace-border bg-workspace-card p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-workspace-muted">
+                  {level} Teaching
+                </p>
+                <p className="mt-2 font-num text-2xl font-bold text-primary-strong">+{tier.teach} Credits</p>
+                <p className="mt-2 text-xs leading-6 text-workspace-muted">{tier.description}</p>
+                <p className="mt-2 text-[11px] text-workspace-muted">{tier.examples.join(" · ")}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
 
       <section className="mt-10 grid gap-4 lg:grid-cols-[1.15fr_1fr]">
         <div>
@@ -104,7 +130,7 @@ function TeachPage() {
                       <Clock className="size-3.5" /> {listing.hours} hours taught
                     </span>
                     <span className="flex items-center gap-1 font-semibold text-workspace-foreground">
-                      <Coins className="size-3.5 text-accent" /> {skill.credits} Credits per session
+                      <Zap className="size-3.5 text-accent" /> {skill.credits} Credits per session
                     </span>
                     {listing.requests > 0 && (
                       <span className="ml-auto font-semibold text-primary-strong">

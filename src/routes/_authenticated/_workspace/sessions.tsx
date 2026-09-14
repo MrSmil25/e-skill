@@ -5,7 +5,7 @@ import {
   CalendarClock,
   Check,
   Clock,
-  Coins,
+  Zap,
   MapPin,
   Quote,
   Star,
@@ -168,7 +168,7 @@ function UpcomingCard({ session }: { session: ExchangeSession }) {
           <Clock className="size-3.5" /> {session.duration} min
         </span>
         <span className="ml-auto flex items-center gap-1 font-semibold text-workspace-foreground">
-          <Coins className="size-3.5 text-accent" />
+          <Zap className="size-3.5 text-accent" />
           {session.role === "learning" ? `−${session.credits}` : `+${session.credits}`} Credits
         </span>
       </div>

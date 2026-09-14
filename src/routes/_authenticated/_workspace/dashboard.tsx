@@ -5,7 +5,7 @@ import {
   CalendarClock,
   Check,
   Clock,
-  Coins,
+  Zap,
   Plus,
   Presentation,
   Sparkles,
@@ -61,9 +61,10 @@ function DashboardPage() {
             </span>
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-7 text-workspace-muted">
-            Every exchange creates learning, contribution, and career evidence. You are{" "}
-            {900 - me.skillScore} points away from Campus Mentor.
+            Setiap exchange menambah pembelajaran, kontribusi, dan bukti skill kamu. Kamu berjarak{" "}
+            {900 - me.skillScore} poin dari level Campus Mentor.
           </p>
+
 
         </div>
         <div className="flex flex-wrap gap-2">
@@ -82,17 +83,60 @@ function DashboardPage() {
         </div>
       </header>
 
-      {/* Headline stats */}
-      <section className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Skill journey summary">
-        <Stat label="Skill Level" value={me.level} caption={`${me.exchangesCompleted} exchanges completed`} />
-        <Stat label="Skill Score" value={String(me.skillScore)} caption="+38 in the last 30 days" accent />
-        <Stat label="Exchange Credits" value={String(me.credits)} caption="Earned by teaching peers" />
-        <Stat
-          label="Verified Skills"
-          value={String(me.verifiedSkills.length)}
-          caption="Backed by assessments"
-        />
+      {/* Exchange power */}
+      <section className="mt-8 grid gap-4 lg:grid-cols-[1fr_1.35fr]" aria-label="Your Exchange Power">
+        <div className="rounded-lg bg-sidebar p-7 text-sidebar-foreground">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">Your Exchange Power</p>
+          <p className="mt-4 flex items-baseline gap-2 font-display text-5xl font-bold">
+            {me.credits}
+            <span className="text-base font-semibold text-sidebar-muted">Credits</span>
+          </p>
+          {best && (
+            <div className="mt-6 border-t border-sidebar-border pt-5">
+              <p className="text-[11px] uppercase tracking-wide text-sidebar-muted">Next Exchange</p>
+              <p className="mt-1.5 text-sm font-semibold">
+                {best.offering.skill.name} {best.offering.skill.level}
+              </p>
+              <p className="mt-1 text-xs text-sidebar-muted">
+                Need {best.offering.skill.credits} Credits · sesi 60 menit
+              </p>
+            </div>
+          )}
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+            <Link
+              to="/explore"
+              className="flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-strong"
+            >
+              Learn Skill <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              to="/teach"
+              className="flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md border border-sidebar-border text-sm font-semibold transition-colors hover:bg-sidebar-panel"
+            >
+              <Presentation className="size-4" /> Teach Your Skill
+            </Link>
+          </div>
+          <p className="mt-5 text-xs leading-5 text-sidebar-muted">
+            Kredit EXCHANGE adalah representasi kontribusi kamu di ekosistem pengetahuan, bukan alat pembayaran.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Stat label="Skill Level" value={me.level} caption={`${me.exchangesCompleted} exchange selesai`} />
+          <Stat label="Skill Score" value={String(me.skillScore)} caption="+38 dalam 30 hari terakhir" accent />
+          <Stat
+            label="Knowledge Shared"
+            value={String(teachingHours(me))}
+            caption="Jam mengajar yang tercatat"
+          />
+          <Stat
+            label="Verified Skills"
+            value={String(me.verifiedSkills.length)}
+            caption="Terbukti lewat assessment"
+          />
+        </div>
       </section>
+
 
       {/* Next opportunity + impact */}
       <section className="mt-4 grid gap-4 lg:grid-cols-[1.5fr_1fr]">
@@ -158,7 +202,7 @@ function DashboardPage() {
                   <CalendarClock className="size-3.5" /> {best.offering.availability}
                 </span>
                 <span className="flex items-center gap-1 font-semibold text-workspace-foreground">
-                  <Coins className="size-3.5 text-accent" /> {best.offering.skill.credits} Credits
+                  <Zap className="size-3.5 text-accent" /> {best.offering.skill.credits} Credits
                 </span>
                 <Link
                   to="/explore"

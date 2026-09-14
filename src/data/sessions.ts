@@ -5,7 +5,16 @@
  * prototype behaves like an account that has already been active for a semester.
  */
 
-import { currentStudent, skillById, studentById, teachingHours, type Skill, type Student } from "./exchange";
+import {
+  SESSION_MINUTES,
+  creditPricing,
+  currentStudent,
+  skillById,
+  studentById,
+  teachingHours,
+  type Skill,
+  type Student,
+} from "./exchange";
 
 export type SessionStatus = "upcoming" | "awaiting" | "completed";
 export type SessionRole = "learning" | "teaching";

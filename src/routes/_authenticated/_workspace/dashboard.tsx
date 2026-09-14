@@ -41,10 +41,23 @@ export const Route = createFileRoute("/_authenticated/_workspace/dashboard")({
   component: DashboardPage,
 });
 
+function greeting() {
+  const hour = new Date().getHours();
+  if (hour < 11) return "Good morning";
+  if (hour < 15) return "Good afternoon";
+  if (hour < 19) return "Good evening";
+  return "Good evening";
+}
+
 function DashboardPage() {
   const me = currentStudent;
   const firstName = me.name.split(" ")[0];
   const best = rankedOfferings(me)[0];
+  const journey = [...me.learning]
+    .sort((a, b) => b.progress - a.progress)
+    .map((entry) => ({ entry, skill: skillById[entry.skillId] }))
+    .filter((item) => item.skill)
+    .slice(0, 3);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-7 sm:py-12">
@@ -55,7 +68,7 @@ function DashboardPage() {
             Your skill journey
           </p>
           <h1 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
-            Hello, {firstName}{" "}
+            {greeting()}, {firstName}{" "}
             <span className="font-emoji" aria-hidden>
               👋
             </span>

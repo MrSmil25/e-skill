@@ -35,14 +35,14 @@ export type ExchangeSession = {
   feedback?: string;
 };
 
-export const sessions: ExchangeSession[] = [
+const sessionSeeds: ExchangeSession[] = [
   {
     id: "s1",
     role: "learning",
     status: "upcoming",
     skillId: "public-speaking",
     peerId: "alya-rahmadani",
-    when: "Tomorrow · 19:00–19:45",
+    when: "Tomorrow · 19:00–20:00",
     duration: 45,
     credits: 6,
     mode: "Online · Google Meet",
@@ -58,7 +58,7 @@ export const sessions: ExchangeSession[] = [
     status: "upcoming",
     skillId: "python-basic",
     peerId: "satria-anugrah",
-    when: "Thursday · 16:30–17:15",
+    when: "Thursday · 16:30–17:30",
     duration: 45,
     credits: 5,
     mode: "On campus · Fasilkom Lounge",
@@ -110,7 +110,7 @@ export const sessions: ExchangeSession[] = [
     credits: 7,
     mode: "Online · Google Meet",
     agenda: ["Map a repetitive task", "Build the automation", "Handover and test"],
-    outcome: "+7 Credits earned · 1 student helped",
+    outcome: "Knowledge shared · +18 Credits · 1 student helped",
     rating: 5,
     feedback: "Explained every step slowly and checked I could redo it alone.",
   },
@@ -125,7 +125,7 @@ export const sessions: ExchangeSession[] = [
     credits: 5,
     mode: "On campus · Fasilkom Lounge",
     agenda: ["Variables and loops", "Read a CSV", "Debug calmly"],
-    outcome: "+5 Credits earned · peer rated 4.9",
+    outcome: "Knowledge shared · +12 Credits · peer rated 4.9",
     rating: 5,
     feedback: "First time programming felt possible. Patient and very structured.",
   },
@@ -145,6 +145,20 @@ export const sessions: ExchangeSession[] = [
     feedback: "Strong improvement between the first and last practice round.",
   },
 ];
+
+/**
+ * One exchange = 60 minutes. Credits follow the skill level:
+ * learning spends the level cost, teaching earns the contribution reward.
+ */
+export const sessions: ExchangeSession[] = sessionSeeds.map((seed) => {
+  const level = skillById[seed.skillId]?.level ?? "Beginner";
+  const pricing = creditPricing[level];
+  return {
+    ...seed,
+    duration: SESSION_MINUTES,
+    credits: seed.role === "learning" ? pricing.learn : pricing.teach,
+  };
+});
 
 export function sessionsByStatus(status: SessionStatus) {
   return sessions.filter((s) => s.status === status);

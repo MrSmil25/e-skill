@@ -179,18 +179,75 @@ export type CreditEntry = {
   direction: "earned" | "spent";
   amount: number;
   reason: string;
+  story: string;
   peer: string;
   when: string;
 };
 
 export const creditLedger: CreditEntry[] = [
-  { id: "c1", direction: "earned", amount: 7, reason: "Taught Automation with AI Tools", peer: "Citra Ayu Lestari", when: "9 September" },
-  { id: "c2", direction: "spent", amount: 4, reason: "Learned Excel Analytics", peer: "Dimas Prasetyo", when: "12 September" },
-  { id: "c3", direction: "earned", amount: 5, reason: "Taught Python Basic", peer: "Yoga Permana", when: "5 September" },
-  { id: "c4", direction: "earned", amount: 10, reason: "Referral reward — 2 invited students completed an exchange", peer: "EXCHANGE", when: "3 September" },
-  { id: "c5", direction: "spent", amount: 6, reason: "Learned Public Speaking", peer: "Alya Rahmadani", when: "28 August" },
-  { id: "c6", direction: "earned", amount: 15, reason: "Taught Website Development to 3 students", peer: "FT UI cohort", when: "22 August" },
-  { id: "c7", direction: "earned", amount: 20, reason: "Welcome grant — verified UI student email", peer: "EXCHANGE", when: "14 July" },
+  {
+    id: "c1",
+    direction: "earned",
+    amount: 18,
+    reason: "Teaching Automation with AI Tools",
+    story: "Knowledge Shared → Skill Reputation Increased",
+    peer: "Citra Ayu Lestari",
+    when: "9 September",
+  },
+  {
+    id: "c2",
+    direction: "spent",
+    amount: 20,
+    reason: "Excel Analytics Session",
+    story: "Skill baru dipelajari → progress naik ke 80%",
+    peer: "Dimas Prasetyo",
+    when: "12 September",
+  },
+  {
+    id: "c3",
+    direction: "earned",
+    amount: 12,
+    reason: "Teaching Python Basic",
+    story: "Knowledge Shared → 1 mahasiswa terbantu",
+    peer: "Yoga Permana",
+    when: "5 September",
+  },
+  {
+    id: "c4",
+    direction: "earned",
+    amount: 20,
+    reason: "Referral Success",
+    story: "Teman kamu menyelesaikan exchange pertamanya",
+    peer: "EXCHANGE",
+    when: "3 September",
+  },
+  {
+    id: "c5",
+    direction: "spent",
+    amount: 15,
+    reason: "Public Speaking Session",
+    story: "Latihan terarah → siap untuk kompetisi",
+    peer: "Alya Rahmadani",
+    when: "28 August",
+  },
+  {
+    id: "c6",
+    direction: "earned",
+    amount: 25,
+    reason: "Teaching Website Development",
+    story: "Knowledge Shared → 3 mahasiswa terbantu",
+    peer: "FT UI cohort",
+    when: "22 August",
+  },
+  {
+    id: "c7",
+    direction: "earned",
+    amount: 30,
+    reason: "30 Starter Credits",
+    story: "Awal perjalanan kamu di EXCHANGE",
+    peer: "EXCHANGE",
+    when: "14 July",
+  },
 ];
 
 export const creditsEarned = creditLedger

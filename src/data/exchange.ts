@@ -84,9 +84,97 @@ export type Skill = {
   growth: number; // % growth in exchanges over the last 30 days
 };
 
+/* -------------------------------------------------------- credit economy */
+
+export type SkillLevel = "Beginner" | "Intermediate" | "Advanced";
+
+/** Every meaningful learning exchange runs for one full hour. */
+export const SESSION_MINUTES = 60;
+
+/** New students start with a deliberately modest balance. */
+export const STARTER_CREDITS = 30;
+
+/**
+ * Exchange Credits are not currency. They represent contribution to the
+ * knowledge ecosystem: learning costs Credits, sharing knowledge earns them.
+ */
+export const creditPricing: Record<
+  SkillLevel,
+  { learn: number; teach: number; label: string; description: string; examples: string[] }
+> = {
+  Beginner: {
+    learn: 15,
+    teach: 12,
+    label: "Beginner Skill",
+    description: "Skill fundamental untuk membantu kamu memulai perjalanan belajar.",
+    examples: ["Canva Basic", "CV Optimization", "Public Speaking Basic"],
+  },
+  Intermediate: {
+    learn: 20,
+    teach: 18,
+    label: "Intermediate Skill",
+    description: "Skill yang membutuhkan latihan dan pemahaman lebih mendalam.",
+    examples: ["Excel Analytics", "Business Case", "Data Analysis"],
+  },
+  Advanced: {
+    learn: 30,
+    teach: 25,
+    label: "Advanced Skill",
+    description: "Skill dengan tingkat kompleksitas lebih tinggi dan membutuhkan pengalaman lebih.",
+    examples: ["Financial Modeling", "Python Automation", "Advanced Analytics"],
+  },
+};
+
+export function learnCost(level: SkillLevel) {
+  return creditPricing[level].learn;
+}
+
+export function teachReward(level: SkillLevel) {
+  return creditPricing[level].teach;
+}
+
+/** Credit packages — minimum purchase is 10 Credits. */
+export const creditPackages = [
+  {
+    id: "try",
+    name: "Try Pack",
+    credits: 10,
+    description: "Untuk kamu yang butuh sedikit tambahan Kredit sebelum exchange berikutnya.",
+  },
+  {
+    id: "growth",
+    name: "Growth Pack",
+    credits: 50,
+    description: "Untuk mahasiswa yang ingin belajar konsisten setiap pekan.",
+    highlight: true,
+  },
+  {
+    id: "career",
+    name: "Career Pack",
+    credits: 100,
+    description: "Untuk persiapan kompetisi, internship, dan peluang karier.",
+  },
+  {
+    id: "pro",
+    name: "Pro Pack",
+    credits: 250,
+    description: "Untuk pengembangan skill yang intensif sepanjang semester.",
+  },
+] as const;
+
+/** Referral rewards activate on meaningful activity, not on sign-up alone. */
+export const referralRewards = [
+  { stage: "Friend Joins", credits: 5, pending: true, note: "Kredit tercatat sebagai pending sampai akun diverifikasi." },
+  { stage: "Account Verified", credits: 5, pending: false, note: "Kredit aktif setelah email kampus terverifikasi." },
+  { stage: "First Exchange Completed", credits: 10, pending: false, note: "Reward terbesar diberikan saat exchange pertama benar-benar terjadi." },
+] as const;
+
+export const referralMaxReward = referralRewards.reduce((sum, r) => sum + r.credits, 0);
+
 /* ------------------------------------------------------------------ skills */
 
-export const skills: Skill[] = [
+const skillSeeds: Skill[] = [
+
   {
     id: "business-case",
     name: "Business Case Framework",

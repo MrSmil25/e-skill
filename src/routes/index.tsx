@@ -92,11 +92,11 @@ function LandingPage() {
                 Your Skills.<br />Your Reputation.<br /><span className="text-primary">Your Future.</span>
               </h1>
               <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
-                Exchange knowledge with students across faculties, build verified skills, and create your professional identity.
+                Belajar dari mahasiswa lain, ajarkan skill yang kamu kuasai, dan bangun reputasi yang bisa dipercaya dunia kerja.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="rounded-full shadow-sm"><Link to="/auth">Start Exchange <ArrowRight className="size-4" /></Link></Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-workspace-border bg-workspace-card"><Link to="/auth">Explore Network <Search className="size-4" /></Link></Button>
+                <Button asChild size="lg" className="rounded-full shadow-sm"><Link to="/auth">Start Learning <ArrowRight className="size-4" /></Link></Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full border-workspace-border bg-workspace-card"><Link to="/auth">Share Your Skill <Search className="size-4" /></Link></Button>
               </div>
               <div className="mt-12 grid max-w-xl grid-cols-3 border-y border-workspace-border py-5">
                 <HeroStat value="30+" label="Student identities" />
@@ -121,7 +121,7 @@ function LandingPage() {
             <div>
               <p className="text-[11px] font-semibold uppercase text-signal">Skill Passport</p>
               <h2 className="mt-5 font-display text-4xl font-bold leading-tight sm:text-5xl">Your ability, made visible.</h2>
-              <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">A living professional identity built from what you learned, what you shared, and the people who can verify it.</p>
+              <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">Identitas profesional yang hidup, dibangun dari apa yang kamu pelajari, apa yang kamu bagikan, dan orang-orang yang bisa memverifikasinya.</p>
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <PassportPoint icon={<BadgeCheck />} text="Verified skills" />
                 <PassportPoint icon={<Presentation />} text="Teaching contribution" />
@@ -137,7 +137,7 @@ function LandingPage() {
           <div className="mx-auto max-w-7xl px-5 text-center sm:px-8 lg:px-10">
             <p className="text-[11px] font-semibold uppercase text-signal">Across campus</p>
             <h2 className="mx-auto mt-5 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-6xl">What you know can unlock what someone else needs.</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted-foreground">The strongest student network is not built on followers. It is built on useful exchanges and credible contribution.</p>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted-foreground">Jaringan mahasiswa terkuat tidak dibangun dari jumlah pengikut, tetapi dari pertukaran pengetahuan yang benar-benar bermanfaat.</p>
             <div className="mt-12 flex flex-wrap justify-center gap-3">
               {["FEB", "Fasilkom", "FIB", "Psikologi", "FISIP", "FH", "FT", "FMIPA", "FK", "Vokasi"].map((faculty) => <span key={faculty} className="rounded-full border border-workspace-border bg-workspace-card px-4 py-2 text-xs text-workspace-muted shadow-sm">{faculty}</span>)}
             </div>

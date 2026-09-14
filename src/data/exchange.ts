@@ -1471,7 +1471,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "nadia-putri",
     skillId: "business-case",
     detail: "taught Business Case Framework to 3 students",
-    outcome: "+10 Credits earned",
+    outcome: "+18 Exchange Credits earned",
     when: "4 hours ago",
   },
   {
@@ -1499,7 +1499,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "tiara-ramadhani",
     skillId: "cv-optimization",
     detail: "taught CV Optimization to 2 students",
-    outcome: "+6 Credits earned",
+    outcome: "+12 Exchange Credits earned",
     when: "Yesterday",
   },
   {
@@ -1518,7 +1518,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "ilham-kurniawan",
     skillId: "ai-automation",
     detail: "taught Automation with AI Tools to 4 students",
-    outcome: "+12 Credits earned",
+    outcome: "+25 Exchange Credits earned",
     when: "2 days ago",
   },
   {
@@ -1634,3 +1634,39 @@ export const referral = {
     { name: "Nabila Syakira", faculty: "FIB UI" as Faculty, status: "Verified 1 skill" },
   ],
 };
+
+/* ------------------------------------------------- goal-based discovery */
+
+/**
+ * Explore is organised around intent ("what do you want to achieve?"),
+ * not around a catalogue of courses.
+ */
+export const goalTracks = [
+  {
+    id: "career-preparation",
+    title: "Career Preparation",
+    question: "Menyiapkan diri untuk internship dan dunia kerja.",
+    skillIds: ["cv-optimization", "interview-preparation", "excel-analytics"],
+    goal: "internship" as Goal,
+  },
+  {
+    id: "competition",
+    title: "Competition",
+    question: "Bersiap menang di kompetisi kampus dan nasional.",
+    skillIds: ["business-case", "presentation-design", "data-analysis"],
+    goal: "competition" as Goal,
+  },
+  {
+    id: "portfolio",
+    title: "Portfolio",
+    question: "Membangun karya nyata yang bisa kamu tunjukkan.",
+    skillIds: ["canva-design", "web-development", "academic-writing"],
+    goal: "career" as Goal,
+  },
+] as const;
+
+export function trackSkills(trackId: string): Skill[] {
+  const track = goalTracks.find((t) => t.id === trackId);
+  if (!track) return [];
+  return track.skillIds.map((id) => skillById[id]).filter(Boolean) as Skill[];
+}

@@ -4,7 +4,7 @@ import {
   BadgeCheck,
   Check,
   Clock,
-  Coins,
+  Zap,
   Plus,
   Sparkles,
   Users,
@@ -104,7 +104,7 @@ function TeachPage() {
                       <Clock className="size-3.5" /> {listing.hours} hours taught
                     </span>
                     <span className="flex items-center gap-1 font-semibold text-workspace-foreground">
-                      <Coins className="size-3.5 text-accent" /> {skill.credits} Credits per session
+                      <Zap className="size-3.5 text-accent" /> {skill.credits} Credits per session
                     </span>
                     {listing.requests > 0 && (
                       <span className="ml-auto font-semibold text-primary-strong">

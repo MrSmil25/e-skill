@@ -5,7 +5,7 @@ import {
   CalendarClock,
   Check,
   Clock,
-  Coins,
+  Zap,
   Plus,
   Presentation,
   Sparkles,
@@ -202,7 +202,7 @@ function DashboardPage() {
                   <CalendarClock className="size-3.5" /> {best.offering.availability}
                 </span>
                 <span className="flex items-center gap-1 font-semibold text-workspace-foreground">
-                  <Coins className="size-3.5 text-accent" /> {best.offering.skill.credits} Credits
+                  <Zap className="size-3.5 text-accent" /> {best.offering.skill.credits} Credits
                 </span>
                 <Link
                   to="/explore"

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Coins, Copy, Repeat2, Sparkles, UserPlus, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, Copy, Repeat2, Sparkles, TrendingUp, UserPlus, Users } from "lucide-react";
 import { referral } from "@/data/exchange";
 import { EmptyState } from "@/components/exchange/empty-state";
 import { StudentBadge } from "@/components/exchange/skill-card";
@@ -57,7 +57,7 @@ function ReferralPage() {
             value={String(referral.successfulExchanges)}
             label="Successful exchanges"
           />
-          <Metric icon={<Coins className="size-4" />} value={String(referral.creditsEarned)} label="Credits earned" />
+          <Metric icon={<TrendingUp className="size-4" />} value={String(referral.creditsEarned)} label="Credits earned" />
           <Metric
             icon={<BadgeCheck className="size-4" />}
             value={`${Math.round((referral.successfulExchanges / referral.studentsJoined) * 100)}%`}

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Copy, Repeat2, Sparkles, TrendingUp, UserPlus, Users } from "lucide-react";
-import { referral } from "@/data/exchange";
+import { referral, referralMaxReward, referralRewards } from "@/data/exchange";
 import { EmptyState } from "@/components/exchange/empty-state";
 import { StudentBadge } from "@/components/exchange/skill-card";
 

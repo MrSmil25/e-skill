@@ -206,7 +206,7 @@ function ExplorePage() {
               title="What do you want to achieve?"
               description="Pilih tujuan kamu, lalu EXCHANGE menunjukkan skill dan mahasiswa yang paling relevan untuk langkah itu."
             />
-            <div className="mt-5 grid gap-4 lg:grid-cols-3">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {goalTracks.map((track) => (
                 <div
                   key={track.id}

@@ -9,8 +9,8 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { currentStudent, goalLabels, skillById, skills, studentById, teachingHours } from "@/data/exchange";
-import { listings, teachRequests } from "@/data/sessions";
+import { creditPricing, currentStudent, goalLabels, skillById, skills, studentById, teachingHours } from "@/data/exchange";
+import { creditsEarned, listings, teachRequests } from "@/data/sessions";
 import { StudentBadge } from "@/components/exchange/skill-card";
 import { EmptyState } from "@/components/exchange/empty-state";
 
@@ -34,6 +34,7 @@ export const Route = createFileRoute("/_authenticated/_workspace/teach")({
 
 function TeachPage() {
   const me = currentStudent;
+  const teachingCredits = creditsEarned;
   const openToTeach = skills
     .filter((skill) => me.verifiedSkills.includes(skill.id))
     .filter((skill) => !me.teaching.some((t) => t.skillId === skill.id))

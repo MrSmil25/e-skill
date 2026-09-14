@@ -179,7 +179,7 @@ const skillSeeds: Skill[] = [
     id: "business-case",
     name: "Business Case Framework",
     category: "business",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Structure any business problem the way case competition judges and consulting interviewers expect.",
     outcomes: [
@@ -198,7 +198,7 @@ const skillSeeds: Skill[] = [
     id: "financial-modeling",
     name: "Financial Modeling",
     category: "business",
-    level: "Beginner",
+    level: "Advanced",
     description:
       "Build a working projection model in Excel from real company assumptions.",
     outcomes: [
@@ -217,7 +217,7 @@ const skillSeeds: Skill[] = [
     id: "excel-analytics",
     name: "Excel Analytics",
     category: "business",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Turn a raw spreadsheet into a decision-ready analysis with pivot tables and lookups.",
     outcomes: [
@@ -293,7 +293,7 @@ const skillSeeds: Skill[] = [
     id: "web-development",
     name: "Website Development",
     category: "technology",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Ship a small live website for your organization or portfolio.",
     outcomes: [
@@ -312,7 +312,7 @@ const skillSeeds: Skill[] = [
     id: "ai-automation",
     name: "Automation with AI Tools",
     category: "technology",
-    level: "Beginner",
+    level: "Advanced",
     description:
       "Use AI tools responsibly to remove repetitive academic and organizational work.",
     outcomes: [
@@ -388,7 +388,7 @@ const skillSeeds: Skill[] = [
     id: "public-speaking",
     name: "Public Speaking",
     category: "communication",
-    level: "Intermediate",
+    level: "Beginner",
     description:
       "Speak with structure and presence under real pressure, with live feedback.",
     outcomes: [

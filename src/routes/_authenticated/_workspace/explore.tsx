@@ -21,6 +21,8 @@ import {
   categoryLabels,
   currentStudent,
   goalLabels,
+  goalTracks,
+  trackSkills,
   mostExchangedSkills,
   offerings,
   offeringsAcrossCampus,
@@ -197,6 +199,47 @@ function ExplorePage() {
         </section>
       ) : (
         <>
+          {/* Goal-based discovery */}
+          <section className="mt-12" aria-label="Goal based discovery">
+            <SectionHeading
+              eyebrow="Start with intent"
+              title="What do you want to achieve?"
+              description="Pilih tujuan kamu, lalu EXCHANGE menunjukkan skill dan mahasiswa yang paling relevan untuk langkah itu."
+            />
+            <div className="mt-5 grid gap-4 lg:grid-cols-3">
+              {goalTracks.map((track) => (
+                <div
+                  key={track.id}
+                  className="flex flex-col rounded-lg border border-workspace-border bg-workspace-card p-5 transition-colors hover:border-primary"
+                >
+                  <p className="font-display text-base font-bold">{track.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-workspace-muted">{track.question}</p>
+                  <ul className="mt-4 space-y-2 border-t border-workspace-border pt-4">
+                    {trackSkills(track.id).map((skill) => (
+                      <li key={skill.id} className="flex items-center justify-between gap-3 text-sm">
+                        <span className="flex items-center gap-2 font-medium">
+                          <Target className="size-3.5 shrink-0 text-primary" />
+                          {skill.name}
+                        </span>
+                        <span className="font-num shrink-0 text-[11px] text-workspace-muted">
+                          {skill.credits} Credits
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() =>
+                      navigate({ search: (prev) => ({ ...prev, goal: track.goal }), replace: true })
+                    }
+                    className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-primary-strong"
+                  >
+                    Show exchanges for this goal <ArrowRight className="size-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Recommended for your goals */}
           <section className="mt-12" aria-label="Recommended for your goals">
             <SectionHeading

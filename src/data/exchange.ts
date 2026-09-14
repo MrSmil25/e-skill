@@ -179,7 +179,7 @@ const skillSeeds: Skill[] = [
     id: "business-case",
     name: "Business Case Framework",
     category: "business",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Structure any business problem the way case competition judges and consulting interviewers expect.",
     outcomes: [
@@ -198,7 +198,7 @@ const skillSeeds: Skill[] = [
     id: "financial-modeling",
     name: "Financial Modeling",
     category: "business",
-    level: "Beginner",
+    level: "Advanced",
     description:
       "Build a working projection model in Excel from real company assumptions.",
     outcomes: [
@@ -217,7 +217,7 @@ const skillSeeds: Skill[] = [
     id: "excel-analytics",
     name: "Excel Analytics",
     category: "business",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Turn a raw spreadsheet into a decision-ready analysis with pivot tables and lookups.",
     outcomes: [
@@ -293,7 +293,7 @@ const skillSeeds: Skill[] = [
     id: "web-development",
     name: "Website Development",
     category: "technology",
-    level: "Beginner",
+    level: "Intermediate",
     description:
       "Ship a small live website for your organization or portfolio.",
     outcomes: [
@@ -312,7 +312,7 @@ const skillSeeds: Skill[] = [
     id: "ai-automation",
     name: "Automation with AI Tools",
     category: "technology",
-    level: "Beginner",
+    level: "Advanced",
     description:
       "Use AI tools responsibly to remove repetitive academic and organizational work.",
     outcomes: [
@@ -388,7 +388,7 @@ const skillSeeds: Skill[] = [
     id: "public-speaking",
     name: "Public Speaking",
     category: "communication",
-    level: "Intermediate",
+    level: "Beginner",
     description:
       "Speak with structure and presence under real pressure, with live feedback.",
     outcomes: [
@@ -1142,6 +1142,159 @@ const studentSeeds: StudentSeed[] = [
     goals: ["internship"],
     availability: "Weekends flexible",
   },
+  {
+    id: "gita-larasati",
+    name: "Gita Larasati",
+    faculty: "FEB UI",
+    major: "Accounting",
+    year: 4,
+    bio: "Suka merapikan laporan keuangan dan membantu teman membaca angka dengan tenang.",
+    skillScore: 861,
+    credits: 92,
+    rating: 4.9,
+    verifiedSkills: ["excel-analytics", "financial-modeling"],
+    teaching: [
+      { skillId: "excel-analytics", students: 21, hours: 10 },
+      { skillId: "financial-modeling", students: 8, hours: 6 },
+    ],
+    learning: [{ skillId: "data-analysis", progress: 45 }],
+    studentsHelped: 29,
+    exchangesCompleted: 34,
+    goals: ["internship", "career"],
+    availability: "Tue & Thu 15:00–18:00",
+  },
+  {
+    id: "bagas-wirawan",
+    name: "Bagas Wirawan",
+    faculty: "Fasilkom UI",
+    major: "Information Systems",
+    year: 3,
+    bio: "Membangun website kecil untuk organisasi kampus. Belajar paling cepat sambil membuat.",
+    skillScore: 788,
+    credits: 74,
+    rating: 4.8,
+    verifiedSkills: ["web-development"],
+    teaching: [{ skillId: "web-development", students: 15, hours: 9 }],
+    learning: [{ skillId: "english-presentation", progress: 35 }],
+    studentsHelped: 17,
+    exchangesCompleted: 23,
+    goals: ["internship", "career"],
+    availability: "Weekdays 19:00–21:00",
+  },
+  {
+    id: "salma-nurhaliza",
+    name: "Salma Nurhaliza",
+    faculty: "Psikologi UI",
+    major: "Psychology",
+    year: 2,
+    bio: "Tertarik pada cara orang belajar. Membantu teman menyiapkan interview dengan lebih percaya diri.",
+    skillScore: 702,
+    credits: 61,
+    rating: 4.8,
+    verifiedSkills: ["interview-preparation"],
+    teaching: [{ skillId: "interview-preparation", students: 12, hours: 7 }],
+    learning: [{ skillId: "canva-design", progress: 50 }],
+    studentsHelped: 14,
+    exchangesCompleted: 19,
+    goals: ["internship", "career"],
+    availability: "Mon & Wed 16:00–19:00",
+  },
+  {
+    id: "arif-santoso",
+    name: "Arif Santoso",
+    faculty: "FT UI",
+    major: "Industrial Engineering",
+    year: 4,
+    bio: "Terbiasa memakai data untuk memperbaiki proses. Senang mengajar analisis dari nol.",
+    skillScore: 826,
+    credits: 88,
+    rating: 4.7,
+    verifiedSkills: ["data-analysis", "excel-analytics"],
+    teaching: [{ skillId: "data-analysis", students: 18, hours: 11 }],
+    learning: [{ skillId: "public-speaking", progress: 30 }],
+    studentsHelped: 22,
+    exchangesCompleted: 28,
+    goals: ["competition", "career"],
+    availability: "Sat 09:00–12:00",
+  },
+  {
+    id: "maya-oktaviani",
+    name: "Maya Oktaviani",
+    faculty: "FIB UI",
+    major: "English Literature",
+    year: 3,
+    bio: "Menyunting esai dan abstrak. Menulis jelas adalah skill karier, bukan bakat.",
+    skillScore: 764,
+    credits: 70,
+    rating: 4.9,
+    verifiedSkills: ["academic-writing", "english-presentation"],
+    teaching: [
+      { skillId: "academic-writing", students: 20, hours: 12 },
+      { skillId: "english-presentation", students: 9, hours: 5 },
+    ],
+    learning: [{ skillId: "presentation-design", progress: 60 }],
+    studentsHelped: 26,
+    exchangesCompleted: 33,
+    goals: ["competition", "career"],
+    availability: "Weekdays 17:00–20:00",
+  },
+  {
+    id: "reza-fadillah",
+    name: "Reza Fadillah",
+    faculty: "Vokasi UI",
+    major: "Digital Media",
+    year: 2,
+    bio: "Editor video untuk konten organisasi. Cerita rapi lebih penting daripada efek ramai.",
+    skillScore: 645,
+    credits: 58,
+    rating: 4.6,
+    verifiedSkills: ["video-editing"],
+    teaching: [{ skillId: "video-editing", students: 11, hours: 6 }],
+    learning: [{ skillId: "canva-design", progress: 40 }],
+    studentsHelped: 12,
+    exchangesCompleted: 16,
+    goals: ["organization", "career"],
+    availability: "Fri 15:00–18:00",
+  },
+  {
+    id: "hana-safira",
+    name: "Hana Safira",
+    faculty: "FMIPA UI",
+    major: "Statistics",
+    year: 3,
+    bio: "Membantu teman memahami data sebelum membuat kesimpulan.",
+    skillScore: 812,
+    credits: 83,
+    rating: 4.8,
+    verifiedSkills: ["data-analysis", "python-basic"],
+    teaching: [{ skillId: "python-basic", students: 16, hours: 8 }],
+    learning: [{ skillId: "business-case", progress: 35 }],
+    studentsHelped: 20,
+    exchangesCompleted: 26,
+    goals: ["competition", "internship"],
+    availability: "Tue 13:00–16:00",
+  },
+  {
+    id: "fajar-nugroho",
+    name: "Fajar Nugroho",
+    faculty: "FH UI",
+    major: "Law",
+    year: 3,
+    bio: "Baru mulai membangun portofolio. Menukar bantuan menulis dengan skill desain.",
+    skillScore: 548,
+    credits: 42,
+    rating: 4.5,
+    verifiedSkills: ["cv-optimization"],
+    teaching: [{ skillId: "cv-optimization", students: 6, hours: 3 }],
+    learning: [
+      { skillId: "presentation-design", progress: 25 },
+      { skillId: "public-speaking", progress: 20 },
+    ],
+    studentsHelped: 7,
+    exchangesCompleted: 11,
+    goals: ["internship", "organization"],
+    availability: "Weekends flexible",
+  },
 ];
 
 export const students: Student[] = studentSeeds.map((seed) => ({
@@ -1318,7 +1471,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "nadia-putri",
     skillId: "business-case",
     detail: "taught Business Case Framework to 3 students",
-    outcome: "+10 Credits earned",
+    outcome: "+18 Exchange Credits earned",
     when: "4 hours ago",
   },
   {
@@ -1346,7 +1499,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "tiara-ramadhani",
     skillId: "cv-optimization",
     detail: "taught CV Optimization to 2 students",
-    outcome: "+6 Credits earned",
+    outcome: "+12 Exchange Credits earned",
     when: "Yesterday",
   },
   {
@@ -1365,7 +1518,7 @@ export const activityFeed: ActivityItem[] = [
     actorId: "ilham-kurniawan",
     skillId: "ai-automation",
     detail: "taught Automation with AI Tools to 4 students",
-    outcome: "+12 Credits earned",
+    outcome: "+25 Exchange Credits earned",
     when: "2 days ago",
   },
   {
@@ -1481,3 +1634,39 @@ export const referral = {
     { name: "Nabila Syakira", faculty: "FIB UI" as Faculty, status: "Verified 1 skill" },
   ],
 };
+
+/* ------------------------------------------------- goal-based discovery */
+
+/**
+ * Explore is organised around intent ("what do you want to achieve?"),
+ * not around a catalogue of courses.
+ */
+export const goalTracks = [
+  {
+    id: "career-preparation",
+    title: "Career Preparation",
+    question: "Menyiapkan diri untuk internship dan dunia kerja.",
+    skillIds: ["cv-optimization", "interview-preparation", "excel-analytics"],
+    goal: "internship" as Goal,
+  },
+  {
+    id: "competition",
+    title: "Competition",
+    question: "Bersiap menang di kompetisi kampus dan nasional.",
+    skillIds: ["business-case", "presentation-design", "data-analysis"],
+    goal: "competition" as Goal,
+  },
+  {
+    id: "portfolio",
+    title: "Portfolio",
+    question: "Membangun karya nyata yang bisa kamu tunjukkan.",
+    skillIds: ["canva-design", "web-development", "academic-writing"],
+    goal: "career" as Goal,
+  },
+] as const;
+
+export function trackSkills(trackId: string): Skill[] {
+  const track = goalTracks.find((t) => t.id === trackId);
+  if (!track) return [];
+  return track.skillIds.map((id) => skillById[id]).filter(Boolean) as Skill[];
+}

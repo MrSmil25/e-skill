@@ -500,6 +500,16 @@ const skillSeeds: Skill[] = [
   },
 ];
 
+/**
+ * Credits and duration are derived from the skill level so the whole product
+ * follows one rule: 1 Session = 60 Minutes, priced by complexity.
+ */
+export const skills: Skill[] = skillSeeds.map((seed) => ({
+  ...seed,
+  credits: creditPricing[seed.level].learn,
+  durationMinutes: SESSION_MINUTES,
+}));
+
 export const skillById = Object.fromEntries(skills.map((s) => [s.id, s])) as Record<string, Skill>;
 
 /* ---------------------------------------------------------------- students */

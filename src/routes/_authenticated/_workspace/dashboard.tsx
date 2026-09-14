@@ -150,6 +150,53 @@ function DashboardPage() {
         </div>
       </section>
 
+      {/* Continue your journey */}
+      {journey.length > 0 && (
+        <section className="mt-4" aria-label="Continue your journey">
+          <div className="rounded-lg border border-workspace-border bg-workspace-card p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">
+              Continue your journey
+            </p>
+            <h2 className="mt-2 font-display text-lg font-bold">Lanjutkan yang sudah kamu mulai</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {journey.map(({ entry, skill }) => (
+                <div key={entry.skillId} className="rounded-md border border-workspace-border p-5">
+                  <p className="font-display text-sm font-bold">{skill!.name}</p>
+                  <p className="mt-1 text-[11px] uppercase text-workspace-muted">
+                    {skill!.level} · 60 menit per sesi
+                  </p>
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-workspace-soft">
+                      <span
+                        className="animate-passport-fill block h-full rounded-full bg-primary"
+                        style={{ width: `${entry.progress}%` }}
+                      />
+                    </span>
+                    <span className="font-num text-xs font-semibold">{entry.progress}%</span>
+                  </div>
+                  <p className="mt-3 text-xs leading-5 text-workspace-muted">
+                    Next milestone:{" "}
+                    <span className="font-medium text-workspace-foreground">
+                      {entry.progress >= 80
+                        ? "Complete assessment"
+                        : entry.progress >= 50
+                          ? "Book your next session"
+                          : "Finish your first practice task"}
+                    </span>
+                  </p>
+                  <Link
+                    to="/sessions"
+                    className="mt-4 flex h-9 items-center justify-center gap-1.5 rounded-md border border-workspace-border text-sm font-semibold transition-colors hover:bg-workspace-soft"
+                  >
+                    Continue Learning <ArrowRight className="size-4" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
 
       {/* Next opportunity + impact */}
       <section className="mt-4 grid gap-4 lg:grid-cols-[1.5fr_1fr]">

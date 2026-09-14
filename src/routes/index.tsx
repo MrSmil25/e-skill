@@ -92,16 +92,25 @@ function LandingPage() {
                 Your Skills.<br />Your Reputation.<br /><span className="text-primary">Your Future.</span>
               </h1>
               <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
-                Belajar dari mahasiswa lain, ajarkan skill yang kamu kuasai, dan bangun reputasi yang bisa dipercaya dunia kerja.
+                EXCHANGE membantu mahasiswa bertukar pengetahuan lintas fakultas, membangun pengalaman nyata,
+                dan menciptakan bukti skill yang dapat digunakan untuk peluang akademik maupun karier.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="rounded-full shadow-sm"><Link to="/auth">Start Learning <ArrowRight className="size-4" /></Link></Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-workspace-border bg-workspace-card"><Link to="/auth">Share Your Skill <Search className="size-4" /></Link></Button>
+                <Button asChild size="lg" className="rounded-full shadow-sm"><Link to="/onboarding">Start Your Skill Journey <ArrowRight className="size-4" /></Link></Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full border-workspace-border bg-workspace-card"><Link to="/explore">Explore Skills <Search className="size-4" /></Link></Button>
               </div>
-              <div className="mt-12 grid max-w-xl grid-cols-3 border-y border-workspace-border py-5">
-                <HeroStat value="30+" label="Student identities" />
-                <HeroStat value="15" label="Active skills" />
-                <HeroStat value="156" label="Verified exchanges" />
+              <div className="mt-8">
+                <p className="text-[11px] font-semibold uppercase text-workspace-muted">Trusted student network across faculties</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {["FEB UI", "Fasilkom UI", "FIB UI", "FT UI", "FISIP UI"].map((faculty) => (
+                    <span key={faculty} className="rounded-full border border-workspace-border bg-workspace-card px-3 py-1.5 text-[11px] font-medium text-workspace-muted shadow-sm">{faculty}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-10 grid max-w-xl grid-cols-3 border-y border-workspace-border py-5">
+                <HeroStat value={`${networkStats.students}`} label="Student identities" />
+                <HeroStat value={`${networkStats.skills}`} label="Active skills" />
+                <HeroStat value={`${networkStats.verifiedExchanges}`} label="Verified exchanges" />
               </div>
             </div>
 
@@ -109,7 +118,7 @@ function LandingPage() {
           </div>
           <div className="relative mx-auto -mt-12 grid max-w-5xl gap-px overflow-hidden rounded-t-2xl border border-b-0 border-workspace-border bg-workspace-border shadow-career sm:grid-cols-3">
             <Signal icon={<BadgeCheck />} label="Verified evidence" value="Peer-backed" />
-            <Signal icon={<Network />} label="Cross-faculty" value="10 faculties" />
+            <Signal icon={<Network />} label="Cross-faculty" value={`${networkStats.faculties} faculties`} />
             <Signal icon={<Sparkles />} label="Skill reputation" value="Always evolving" />
           </div>
         </section>

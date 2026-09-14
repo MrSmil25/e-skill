@@ -561,7 +561,7 @@ const studentSeeds: StudentSeed[] = [
     year: 3,
     bio: "Backend-leaning student who likes explaining code to non-tech friends. Preparing for a product internship.",
     skillScore: 842,
-    credits: 125,
+    credits: 70,
     rating: 4.8,
     verifiedSkills: ["python-basic", "excel-analytics", "web-development", "ai-automation"],
     teaching: [
@@ -1624,9 +1624,9 @@ export const learningJourney: TimelineEntry[] = [
 export const referral = {
   identity: "Campus Ambassador",
   code: "RAKAUI26",
-  studentsJoined: 18,
-  successfulExchanges: 12,
-  creditsEarned: 60,
+  studentsJoined: 4,
+  successfulExchanges: 1,
+  creditsEarned: 20,
   invited: [
     { name: "Satria Anugrah", faculty: "FH UI" as Faculty, status: "Completed first exchange" },
     { name: "Yoga Permana", faculty: "Fasilkom UI" as Faculty, status: "Teaching Python Basic" },
@@ -1663,6 +1663,13 @@ export const goalTracks = [
     skillIds: ["canva-design", "web-development", "academic-writing"],
     goal: "career" as Goal,
   },
+  {
+    id: "organization",
+    title: "Organization",
+    question: "Menjalankan program dan acara kampus dengan lebih rapi.",
+    skillIds: ["public-speaking", "video-editing", "presentation-design"],
+    goal: "organization" as Goal,
+  },
 ] as const;
 
 export function trackSkills(trackId: string): Skill[] {
@@ -1670,3 +1677,14 @@ export function trackSkills(trackId: string): Skill[] {
   if (!track) return [];
   return track.skillIds.map((id) => skillById[id]).filter(Boolean) as Skill[];
 }
+
+
+/* ------------------------------------------------------- network snapshot */
+
+/** Landing-page numbers derive from the simulation, never hardcoded copy. */
+export const networkStats = {
+  students: students.length,
+  faculties: faculties.length,
+  skills: skills.length,
+  verifiedExchanges: students.reduce((sum, s) => sum + s.exchangesCompleted, 0),
+};

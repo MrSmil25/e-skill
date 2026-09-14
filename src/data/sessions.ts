@@ -258,6 +258,9 @@ export const creditsSpent = creditLedger
   .filter((e) => e.direction === "spent")
   .reduce((sum, e) => sum + e.amount, 0);
 
+/** Single source of truth for the visible balance. */
+export const creditBalance = creditsEarned - creditsSpent;
+
 /* ---------------------------------------------------------------- teaching */
 
 export type Listing = {

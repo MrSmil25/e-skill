@@ -10,33 +10,183 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedWorkspaceRouteRouteImport } from './routes/_authenticated/_workspace/route'
+import { Route as AuthenticatedWorkspaceDashboardRouteImport } from './routes/_authenticated/_workspace/dashboard'
+import { Route as AuthenticatedWorkspaceExploreRouteImport } from './routes/_authenticated/_workspace/explore'
+import { Route as AuthenticatedWorkspaceLeaderboardRouteImport } from './routes/_authenticated/_workspace/leaderboard'
+import { Route as AuthenticatedWorkspacePassportRouteImport } from './routes/_authenticated/_workspace/passport'
+import { Route as AuthenticatedWorkspaceProfileRouteImport } from './routes/_authenticated/_workspace/profile'
+import { Route as AuthenticatedWorkspaceReferralRouteImport } from './routes/_authenticated/_workspace/referral'
+import { Route as AuthenticatedWorkspaceSessionsRouteImport } from './routes/_authenticated/_workspace/sessions'
+import { Route as AuthenticatedWorkspaceTeachRouteImport } from './routes/_authenticated/_workspace/teach'
+import { Route as AuthenticatedWorkspaceWalletRouteImport } from './routes/_authenticated/_workspace/wallet'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedWorkspaceRouteRoute =
+  AuthenticatedWorkspaceRouteRouteImport.update({
+    id: '/_workspace',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceDashboardRoute =
+  AuthenticatedWorkspaceDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceExploreRoute =
+  AuthenticatedWorkspaceExploreRouteImport.update({
+    id: '/explore',
+    path: '/explore',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceLeaderboardRoute =
+  AuthenticatedWorkspaceLeaderboardRouteImport.update({
+    id: '/leaderboard',
+    path: '/leaderboard',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspacePassportRoute =
+  AuthenticatedWorkspacePassportRouteImport.update({
+    id: '/passport',
+    path: '/passport',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceProfileRoute =
+  AuthenticatedWorkspaceProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceReferralRoute =
+  AuthenticatedWorkspaceReferralRouteImport.update({
+    id: '/referral',
+    path: '/referral',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceSessionsRoute =
+  AuthenticatedWorkspaceSessionsRouteImport.update({
+    id: '/sessions',
+    path: '/sessions',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceTeachRoute =
+  AuthenticatedWorkspaceTeachRouteImport.update({
+    id: '/teach',
+    path: '/teach',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceWalletRoute =
+  AuthenticatedWorkspaceWalletRouteImport.update({
+    id: '/wallet',
+    path: '/wallet',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedWorkspaceDashboardRoute
+  '/explore': typeof AuthenticatedWorkspaceExploreRoute
+  '/leaderboard': typeof AuthenticatedWorkspaceLeaderboardRoute
+  '/passport': typeof AuthenticatedWorkspacePassportRoute
+  '/profile': typeof AuthenticatedWorkspaceProfileRoute
+  '/referral': typeof AuthenticatedWorkspaceReferralRoute
+  '/sessions': typeof AuthenticatedWorkspaceSessionsRoute
+  '/teach': typeof AuthenticatedWorkspaceTeachRoute
+  '/wallet': typeof AuthenticatedWorkspaceWalletRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedWorkspaceDashboardRoute
+  '/explore': typeof AuthenticatedWorkspaceExploreRoute
+  '/leaderboard': typeof AuthenticatedWorkspaceLeaderboardRoute
+  '/passport': typeof AuthenticatedWorkspacePassportRoute
+  '/profile': typeof AuthenticatedWorkspaceProfileRoute
+  '/referral': typeof AuthenticatedWorkspaceReferralRoute
+  '/sessions': typeof AuthenticatedWorkspaceSessionsRoute
+  '/teach': typeof AuthenticatedWorkspaceTeachRoute
+  '/wallet': typeof AuthenticatedWorkspaceWalletRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/_workspace': typeof AuthenticatedWorkspaceRouteRouteWithChildren
+  '/_authenticated/_workspace/dashboard': typeof AuthenticatedWorkspaceDashboardRoute
+  '/_authenticated/_workspace/explore': typeof AuthenticatedWorkspaceExploreRoute
+  '/_authenticated/_workspace/leaderboard': typeof AuthenticatedWorkspaceLeaderboardRoute
+  '/_authenticated/_workspace/passport': typeof AuthenticatedWorkspacePassportRoute
+  '/_authenticated/_workspace/profile': typeof AuthenticatedWorkspaceProfileRoute
+  '/_authenticated/_workspace/referral': typeof AuthenticatedWorkspaceReferralRoute
+  '/_authenticated/_workspace/sessions': typeof AuthenticatedWorkspaceSessionsRoute
+  '/_authenticated/_workspace/teach': typeof AuthenticatedWorkspaceTeachRoute
+  '/_authenticated/_workspace/wallet': typeof AuthenticatedWorkspaceWalletRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/explore'
+    | '/leaderboard'
+    | '/passport'
+    | '/profile'
+    | '/referral'
+    | '/sessions'
+    | '/teach'
+    | '/wallet'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/explore'
+    | '/leaderboard'
+    | '/passport'
+    | '/profile'
+    | '/referral'
+    | '/sessions'
+    | '/teach'
+    | '/wallet'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/_workspace'
+    | '/_authenticated/_workspace/dashboard'
+    | '/_authenticated/_workspace/explore'
+    | '/_authenticated/_workspace/leaderboard'
+    | '/_authenticated/_workspace/passport'
+    | '/_authenticated/_workspace/profile'
+    | '/_authenticated/_workspace/referral'
+    | '/_authenticated/_workspace/sessions'
+    | '/_authenticated/_workspace/teach'
+    | '/_authenticated/_workspace/wallet'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +198,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_workspace': {
+      id: '/_authenticated/_workspace'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedWorkspaceRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_workspace/dashboard': {
+      id: '/_authenticated/_workspace/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedWorkspaceDashboardRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/explore': {
+      id: '/_authenticated/_workspace/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof AuthenticatedWorkspaceExploreRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/leaderboard': {
+      id: '/_authenticated/_workspace/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof AuthenticatedWorkspaceLeaderboardRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/passport': {
+      id: '/_authenticated/_workspace/passport'
+      path: '/passport'
+      fullPath: '/passport'
+      preLoaderRoute: typeof AuthenticatedWorkspacePassportRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/profile': {
+      id: '/_authenticated/_workspace/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedWorkspaceProfileRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/referral': {
+      id: '/_authenticated/_workspace/referral'
+      path: '/referral'
+      fullPath: '/referral'
+      preLoaderRoute: typeof AuthenticatedWorkspaceReferralRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/sessions': {
+      id: '/_authenticated/_workspace/sessions'
+      path: '/sessions'
+      fullPath: '/sessions'
+      preLoaderRoute: typeof AuthenticatedWorkspaceSessionsRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/teach': {
+      id: '/_authenticated/_workspace/teach'
+      path: '/teach'
+      fullPath: '/teach'
+      preLoaderRoute: typeof AuthenticatedWorkspaceTeachRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/wallet': {
+      id: '/_authenticated/_workspace/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof AuthenticatedWorkspaceWalletRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
   }
 }
 
+interface AuthenticatedWorkspaceRouteRouteChildren {
+  AuthenticatedWorkspaceDashboardRoute: typeof AuthenticatedWorkspaceDashboardRoute
+  AuthenticatedWorkspaceExploreRoute: typeof AuthenticatedWorkspaceExploreRoute
+  AuthenticatedWorkspaceLeaderboardRoute: typeof AuthenticatedWorkspaceLeaderboardRoute
+  AuthenticatedWorkspacePassportRoute: typeof AuthenticatedWorkspacePassportRoute
+  AuthenticatedWorkspaceProfileRoute: typeof AuthenticatedWorkspaceProfileRoute
+  AuthenticatedWorkspaceReferralRoute: typeof AuthenticatedWorkspaceReferralRoute
+  AuthenticatedWorkspaceSessionsRoute: typeof AuthenticatedWorkspaceSessionsRoute
+  AuthenticatedWorkspaceTeachRoute: typeof AuthenticatedWorkspaceTeachRoute
+  AuthenticatedWorkspaceWalletRoute: typeof AuthenticatedWorkspaceWalletRoute
+}
+
+const AuthenticatedWorkspaceRouteRouteChildren: AuthenticatedWorkspaceRouteRouteChildren =
+  {
+    AuthenticatedWorkspaceDashboardRoute: AuthenticatedWorkspaceDashboardRoute,
+    AuthenticatedWorkspaceExploreRoute: AuthenticatedWorkspaceExploreRoute,
+    AuthenticatedWorkspaceLeaderboardRoute:
+      AuthenticatedWorkspaceLeaderboardRoute,
+    AuthenticatedWorkspacePassportRoute: AuthenticatedWorkspacePassportRoute,
+    AuthenticatedWorkspaceProfileRoute: AuthenticatedWorkspaceProfileRoute,
+    AuthenticatedWorkspaceReferralRoute: AuthenticatedWorkspaceReferralRoute,
+    AuthenticatedWorkspaceSessionsRoute: AuthenticatedWorkspaceSessionsRoute,
+    AuthenticatedWorkspaceTeachRoute: AuthenticatedWorkspaceTeachRoute,
+    AuthenticatedWorkspaceWalletRoute: AuthenticatedWorkspaceWalletRoute,
+  }
+
+const AuthenticatedWorkspaceRouteRouteWithChildren =
+  AuthenticatedWorkspaceRouteRoute._addFileChildren(
+    AuthenticatedWorkspaceRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedWorkspaceRouteRoute: typeof AuthenticatedWorkspaceRouteRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedWorkspaceRouteRoute:
+    AuthenticatedWorkspaceRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

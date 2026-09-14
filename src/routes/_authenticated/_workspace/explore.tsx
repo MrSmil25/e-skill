@@ -21,6 +21,8 @@ import {
   categoryLabels,
   currentStudent,
   goalLabels,
+  goalTracks,
+  trackSkills,
   mostExchangedSkills,
   offerings,
   offeringsAcrossCampus,
